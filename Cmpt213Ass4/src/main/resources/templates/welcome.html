@@ -1,0 +1,41 @@
+<!--Yang Zou  yza497   301385615-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
+    <title>CMPT 213 Online Hangman Game</title>
+</head>
+
+
+<body>
+    <form action="#" th:action="@{/game}">
+
+        <!--/* Display the welcome message and a button to start a new game */-->
+        <h1>Welcome to The Hangman Game!</h1>
+
+        <!--/* The back ground music is ONE, I play and recorded this song */-->
+        <audio controls="controls" th:autoplay="@{/music/ONE.mp3}"  th:loop="@{/music/ONE.mp3}" hidden="true">
+            <source src="/music/ONE.mp3"  type="audio/mpeg"></source>
+        </audio>
+
+        <p>
+            Hey there!
+            <img th:src="@{/images/hangman.jpg}" />
+        </p>
+
+        <!--/* Print my information */-->
+        <p th:utext="${creatorInfo}"></p>
+        <p>
+            Rule: <!--/* The rule of hangman game */-->
+            <th:block th:text="${rule}">rule</th:block>
+        </p>
+        <!--/* A button to starta new game */-->
+        <button type="submit">Start a new game</button>
+
+    </form>
+
+
+</body>
+</html>

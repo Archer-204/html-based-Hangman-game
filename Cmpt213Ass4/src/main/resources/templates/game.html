@@ -1,0 +1,49 @@
+<!--Yang Zou  yza497   301385615-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
+    <title>CMPT 213 Online Hangman Game</title>
+
+</head>
+<body>
+
+
+<div id="game-makeGuess"  th:fragment="game-makeGuess">
+<!--/* Print the page id */-->
+<h1><p th:utext="'Game '+${newGame.id}+' page'"></p></h1>
+    <p th:id="${newGame.id}"></p>
+    <p><img th:src="@{/images/lamuAndleimu.jpg}" /></p>
+
+    <!--/* Display the process and the word */-->
+    <form action="/game" th:action="@{/game}" method="post" th:object="${newGame}">
+        <p th:utext="'Status: '+${newGame.stat}"></p>
+        <p>Progress:
+            <tr th:each="p :${newGame.charArr}">
+            <td th:utext="${p}">txt</td>
+            </tr>
+        </p>
+        <p>The Word(Just for TA's convenience to check):
+            <tr th:each="p :${newGame.theWord}">
+                <td th:utext="${p}">txt</td>
+            </tr>
+        </p>
+
+        <p th:utext="'You have made '+${newGame.totalCount}+' guesses, out of which '+${newGame.wrongCount}+' are incorrect.'"></p>
+
+        <!--/* Input the guess */-->
+        <p>Your guess:
+            <textarea rows="1" cols="4" onfocus="this.value=''" maxlength="1" th:field="*{guess}"></textarea>
+        </p>
+        <button type="submit">Make a guess</button>
+    </form>
+
+    <!--/* A button to back to the welcome page */-->
+    <p><a th:href="@{/welcome}">Back to welcome</a></p>
+
+</div>
+</body>
+</html>
